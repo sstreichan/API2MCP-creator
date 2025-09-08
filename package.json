@@ -1,0 +1,33 @@
+{
+  "name": "any-api-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Generic MCP server template for any HTTP API.",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "validate:endpoints": "tsx scripts/validate_endpoints.ts",
+    "probe:get": "tsx scripts/probe_get.ts",
+    "discover:openapi": "tsx scripts/discover_openapi.ts",
+    "scan:wordlist": "tsx scripts/scan_wordlist.ts",
+    "inventory:api": "tsx scripts/inventory_api.ts",
+    "openapi:to:tools": "tsx scripts/openapi_to_tools.ts",
+    "scan:to:tools": "tsx scripts/scan_to_tools.ts",
+    "oauth2:client": "tsx scripts/oauth2_client.ts",
+    "oauth2:device": "tsx scripts/oauth2_device.ts"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "tslib": "^2.6.3",
+    "tsx": "^4.15.7",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2025-09-08T00:00:00.000Z",
+  "tools": [
+    { "name": "get_devices", "description": "List devices", "method": "GET", "pathTemplate": "/devices/", "pathParams": [], "queryParams": ["page","per_page"], "hasBody": false, "guarded": false },
+    { "name": "get_device", "description": "Get device by id", "method": "GET", "pathTemplate": "/devices/{device_id}/", "pathParams": ["device_id"], "queryParams": [], "hasBody": false, "guarded": false },
+
+    { "name": "get_users", "description": "List users", "method": "GET", "pathTemplate": "/users/", "pathParams": [], "queryParams": ["page","per_page"], "hasBody": false, "guarded": false },
+    { "name": "get_user", "description": "Get user by id", "method": "GET", "pathTemplate": "/users/{user_id}/", "pathParams": ["user_id"], "queryParams": [], "hasBody": false, "guarded": false },
+
+    { "name": "get_policies_plural", "description": "List policies (plural)", "method": "GET", "pathTemplate": "/policies/", "pathParams": [], "queryParams": ["page","per_page"], "hasBody": false, "guarded": false },
+    { "name": "get_policy_plural", "description": "Get policy by id (plural)", "method": "GET", "pathTemplate": "/policies/{policy_id}/", "pathParams": ["policy_id"], "queryParams": [], "hasBody": false, "guarded": false },
+    { "name": "archive_policy_plural", "description": "Archive policy (plural)", "method": "POST", "pathTemplate": "/policies/{policy_id}/archive/", "pathParams": ["policy_id"], "queryParams": [], "hasBody": false, "guarded": true },
+    { "name": "get_policy_devices_plural", "description": "List devices for policy (plural)", "method": "GET", "pathTemplate": "/policies/{policy_id}/devices/", "pathParams": ["policy_id"], "queryParams": ["page","per_page"], "hasBody": false, "guarded": false },
+
+    { "name": "get_policies_singular", "description": "List policies (singular)", "method": "GET", "pathTemplate": "/policy/", "pathParams": [], "queryParams": ["page","per_page"], "hasBody": false, "guarded": false },
+    { "name": "get_policy_singular", "description": "Get policy by id (singular)", "method": "GET", "pathTemplate": "/policy/{policy_id}/", "pathParams": ["policy_id"], "queryParams": [], "hasBody": false, "guarded": false },
+    { "name": "get_policy_devices_singular", "description": "List devices for policy (singular)", "method": "GET", "pathTemplate": "/policy/{policy_id}/devices/", "pathParams": ["policy_id"], "queryParams": ["page","per_page"], "hasBody": false, "guarded": false },
+
+    { "name": "associate_policy", "description": "Associate policy via action", "method": "POST", "pathTemplate": "/actions/associate_policy/", "pathParams": [], "queryParams": [], "hasBody": true, "guarded": true },
+    { "name": "remove_policy", "description": "Remove policy via action", "method": "POST", "pathTemplate": "/actions/remove_policy/", "pathParams": [], "queryParams": [], "hasBody": true, "guarded": true },
+    { "name": "policy_force_update", "description": "Force policy refresh", "method": "POST", "pathTemplate": "/actions/refresh_policies/", "pathParams": [], "queryParams": [], "hasBody": true, "guarded": true },
+    { "name": "delete_device_action", "description": "Delete device via action", "method": "POST", "pathTemplate": "/actions/delete_device/", "pathParams": [], "queryParams": [], "hasBody": true, "guarded": true },
+    { "name": "mark_as_disenrolled", "description": "Mark devices as disenrolled", "method": "POST", "pathTemplate": "/actions/mark_as_disenrolled/", "pathParams": [], "queryParams": [], "hasBody": true, "guarded": true }
+  ]
+}
+
