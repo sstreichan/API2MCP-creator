@@ -11,9 +11,9 @@ A minimal, configurable Model Context Protocol (MCP) server you can use to adapt
 
 ## Quick Start
 
-1) Create a new repo and copy this template directory:
-- Repo name suggestion: `mcp-any-api`
-- Copy `templates/any-api-mcp/*` into the new repo root
+1) Use this repo as your starting point:
+- This repository root **is** the template — there is no separate `templates/` subdirectory to copy from.
+- Clone it, then rename/fork it for your own project (e.g. `mcp-any-api`).
 
 2) Install and build
 ```bash
@@ -172,7 +172,7 @@ Use the provided example tools file and Hexnode credentials:
 
 1) Copy example to working tools file
 ```bash
-cp templates/any-api-mcp/examples/hexnode.tools.json tools.json
+cp examples/hexnode.tools.json tools.json
 ```
 
 2) Configure Hexnode env in `.env.local` (header auth)
@@ -198,4 +198,4 @@ Note: Some Hexnode tenants use singular policy paths (`/policy/…`) and others 
 - `dist/*`: compiled output
 
 ## License
-Add your preferred license before public release.
+MIT — see [LICENSE](./LICENSE).
