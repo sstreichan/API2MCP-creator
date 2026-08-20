@@ -4,3 +4,5 @@ dist/
 .env.*
 reports/
 .DS_Store
+.claude/
+coverage/
