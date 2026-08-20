@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "license": "MIT",
   "description": "Generic MCP server template for any HTTP API.",
   "main": "dist/server.js",
   "scripts": {
