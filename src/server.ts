@@ -108,7 +108,7 @@ const WriteInput = z.object({ path: z.string(), payload: z.unknown().optional(),
 
 const server = new McpServer({ name: "any-api-mcp", version: "0.1.0" });
 
-server.tool("api_probe", "Probe an API path with any method (safe).", ProbeInput, async (input) => {
+server.tool("api_probe", "Probe an API path with any method (safe).", ProbeInput.shape, async (input) => {
   const qp = input.method.toUpperCase() === "GET" ? "" : ""; // no query support here, use api_get for GET+query
   const urlPath = `${input.path}${qp}`;
   const { status, url } = await hx(urlPath, { method: input.method, tool: "api_probe", headers: input.headers });
@@ -126,27 +126,27 @@ server.tool("api_probe", "Probe an API path with any method (safe).", ProbeInput
   return { content: [{ type: "resource", resource: { uri: url, mimeType: "application/json", text: JSON.stringify(payload) } }] };
 });
 
-server.tool("api_get", "Generic GET against API_BASE (safe).", GetInput, async (input) => {
+server.tool("api_get", "Generic GET against API_BASE (safe).", GetInput.shape, async (input) => {
   const pathWithQuery = `${input.path}${qs(input.query)}`;
   const { data, url } = await hx<Record<string, unknown>>(pathWithQuery, { method: "GET", tool: "api_get", headers: input.headers });
   return { content: [{ type: "resource", resource: { uri: url, mimeType: "application/json", text: JSON.stringify(data) } }] };
 });
 
-server.tool("api_post", "Generic POST against API_BASE (guarded).", WriteInput, async (input) => {
+server.tool("api_post", "Generic POST against API_BASE (guarded).", WriteInput.shape, async (input) => {
   if (ALLOW_DESTRUCTIVE !== "true") return { content: [{ type: "text", text: "Destructive disabled. Set ALLOW_DESTRUCTIVE=true to enable POST." }] };
   const body = typeof input.payload === "undefined" ? undefined : JSON.stringify(input.payload);
   const { data, url } = await hx<Record<string, unknown>>(input.path, { method: "POST", tool: "api_post", headers: input.headers, body });
   return { content: [{ type: "resource", resource: { uri: url, mimeType: "application/json", text: JSON.stringify(data) } }] };
 });
 
-server.tool("api_put", "Generic PUT against API_BASE (guarded).", WriteInput, async (input) => {
+server.tool("api_put", "Generic PUT against API_BASE (guarded).", WriteInput.shape, async (input) => {
   if (ALLOW_DESTRUCTIVE !== "true") return { content: [{ type: "text", text: "Destructive disabled. Set ALLOW_DESTRUCTIVE=true to enable PUT." }] };
   const body = typeof input.payload === "undefined" ? undefined : JSON.stringify(input.payload);
   const { data, url } = await hx<Record<string, unknown>>(input.path, { method: "PUT", tool: "api_put", headers: input.headers, body });
   return { content: [{ type: "resource", resource: { uri: url, mimeType: "application/json", text: JSON.stringify(data) } }] };
 });
 
-server.tool("api_delete", "Generic DELETE against API_BASE (guarded).", WriteInput, async (input) => {
+server.tool("api_delete", "Generic DELETE against API_BASE (guarded).", WriteInput.shape, async (input) => {
   if (ALLOW_DESTRUCTIVE !== "true") return { content: [{ type: "text", text: "Destructive disabled. Set ALLOW_DESTRUCTIVE=true to enable DELETE." }] };
   const body = typeof input.payload === "undefined" ? undefined : JSON.stringify(input.payload);
   const { data, url } = await hx<Record<string, unknown>>(input.path, { method: "DELETE", tool: "api_delete", headers: input.headers, body });
@@ -174,7 +174,7 @@ try {
         payload: z.unknown().optional(),
         headers: z.record(z.string(), z.string()).optional()
       });
-      server.tool(name, description, Input, async (input:any)=>{
+      server.tool(name, description, Input.shape, async (input:any)=>{
         const compiledPath = pathTemplate.replace(/\{(.*?)\}/g, (_:string, k: string) => encodeURIComponent(String(input.pathParams?.[k] ?? '')));
         const withQuery = method === 'GET' ? `${compiledPath}${qs(input.query)}` : compiledPath;
         if (guarded && ALLOW_DESTRUCTIVE !== 'true') return { content: [{ type: 'text', text: 'Destructive disabled. Set ALLOW_DESTRUCTIVE=true to enable.' }] };
