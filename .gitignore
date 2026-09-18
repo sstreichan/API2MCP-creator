@@ -5,5 +5,7 @@ dist/
 reports/
 .DS_Store
 .claude/
+.cortexkit/
+.opencode/
 coverage/
 .slim/deepwork/
