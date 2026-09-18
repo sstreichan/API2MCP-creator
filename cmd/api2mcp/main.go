@@ -1,8 +1,16 @@
 // Command api2mcp is the any-api-mcp MCP server binary.
 //
 // The binary identity is api2mcp; the MCP server name stays any-api-mcp
-// (see migration plan 5.1). Real CLI dispatch is added in a later phase;
-// this placeholder only wires the command entrypoint.
+// (see migration plan 5.1). All output routing and exit codes live in
+// internal/cli.
 package main
 
-func main() {}
+import (
+	"os"
+
+	"github.com/sstreichan/api2mcp/internal/cli"
+)
+
+func main() {
+	os.Exit(cli.Execute(os.Args[1:]))
+}
